@@ -4,17 +4,19 @@ package ${package.Controller};
 import org.springframework.web.bind.annotation.RequestMapping;
 
 <#if restControllerStyle>
-    import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;
 <#else>
-    import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;
 </#if>
 <#if superControllerClassPackage??>
-    import ${superControllerClassPackage};
+import ${superControllerClassPackage};
 </#if>
 
 /**
 * <p>
-    * ${table.comment!} 前端控制器123
+    * ${table.comment!} 前端控制器
+        ${entity}
+    ${superServiceImplClass}
     * </p>
 *
 * @author ${author}

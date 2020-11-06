@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.ArrayList;
@@ -16,12 +17,12 @@ public class Start {
      * 文件生成会在 {USER_DIR/src/main/java/{MODULE_NAME}}下生成controller，service，dao
      * 文件生成会在 {USER_DIR/src/main/resources/mapper/{MODULE_NAME}}下生成*Mapper.xml
      */
-    public static final String USER_DIR = "D:\\workspces\\javaSaber\\archar-server";
+//    public static final String USER_DIR = "D:\\workspces\\javaSaber\\archar-server";
     public static final String MODULE_NAME = "";
     public static final String PACKAGE_NAME = "fgo.xiaox.archar";
 
 
-//    public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String USER_DIR = System.getProperty("user.dir");
 
 
     public static void main(String[] args) {
@@ -77,6 +78,17 @@ public class Start {
         generator.setTemplate(templateConfig);
 
         generator.setTemplateEngine(new FreemarkerTemplateEngine());
+
+        // 策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        strategy.setEntityLombokModel(true);
+        strategy.setRestControllerStyle(true);
+
+        // 公共父类
+        strategy.setSuperControllerClass("fgo.xiaox.archar.common.base.db.BaseController");
+        generator.setStrategy(strategy);
 
         generator.execute();
 

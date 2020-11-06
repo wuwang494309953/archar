@@ -17,4 +17,13 @@ public abstract class BaseController <T extends IService<M>, M> {
         return iService.save(entity);
     }
 
+    /**
+     * 根据 ID 选择修改
+     *
+     * @param entity 实体对象
+     */
+    boolean updateById(M entity) {
+        return iService.updateById(entity);
+    }
+
 }
