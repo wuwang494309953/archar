@@ -1,7 +1,7 @@
 package fgo.xiaox.archar.common.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fgo.xiaox.archar.entity.enums.SexEnum;
+import fgo.xiaox.archar.entity.Demo;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -49,8 +49,8 @@ public class JSON {
         Map map1 = JSON.string2Obj(JSON.obj2String(map), Map.class);
         System.out.println(map1);
 
-        SexEnum sexEnum = JSON.string2Obj("{\"sexEnum\": 1" + "}", SexEnum.class);
-        System.out.println(sexEnum);
+        Demo demo = JSON.string2Obj("{\"sex\":1}", Demo.class);
+        System.out.println(demo);
     }
 
 }
