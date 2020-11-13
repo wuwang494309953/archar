@@ -74,7 +74,8 @@ public class Start {
 
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig()
-                .setController("./templates/ArcharController.java");
+                .setController("./templates/ArcharController.java")
+                .setXml(null);
         generator.setTemplate(templateConfig);
 
         generator.setTemplateEngine(new FreemarkerTemplateEngine());

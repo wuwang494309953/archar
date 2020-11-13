@@ -4,12 +4,13 @@ package ${package.Controller};
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import fgo.xiaox.archar.common.base.db.PageParam;
 import fgo.xiaox.archar.common.base.web.JsonResult;
-import fgo.xiaox.archar.entity.Demo;
-import fgo.xiaox.archar.service.IDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity};
 
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
@@ -28,7 +29,7 @@ import ${superControllerClassPackage};
 @RestController
 @RequestMapping("<#if package.ModuleName?? && package.ModuleName != "">/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
 <#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
+public class ${table.controllerName} extends ${superControllerClass}<${table.serviceName}, ${entity}> {
 <#else>
 public class ${table.controllerName} {
 </#if>
@@ -58,7 +59,7 @@ public class ${table.controllerName} {
 
     @PutMapping
     public JsonResult<Object> ${entity?uncap_first}SaveOrUpdate(@RequestBody ${entity} ${entity?uncap_first}) {
-        super.saveOrUpdate(demo);
+        super.saveOrUpdate(${entity?uncap_first});
         return JsonResult.success("保存或更新数据成功");
     }
 
