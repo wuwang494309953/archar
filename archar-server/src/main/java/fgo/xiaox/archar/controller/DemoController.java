@@ -60,4 +60,9 @@ public class DemoController extends BaseController<IDemoService, Demo> {
         return JsonResult.success("删除数据成功");
     }
 
+    @PostMapping("/tt")
+    public JsonResult<Demo> tt(String name) {
+        return JsonResult.success(name);
+    }
+
 }

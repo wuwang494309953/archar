@@ -36,6 +36,12 @@ export default new Router({
             component: Layout,
             children: [
                 {
+                    path: 'menus',
+                    name: 'menus',
+                    component: () => import('@/pages/sys/MenuList'),
+                    meta: { title: '系统菜单' }
+                },
+                {
                     path: 'demo1',
                     name: 'demo1',
                     component: () => import('@/pages/demo/demo1'),

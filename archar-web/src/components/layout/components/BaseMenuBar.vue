@@ -1,24 +1,22 @@
 <template>
   <div class="bar-area">
-    <div class="tag-area">
-      <el-scrollbar style="white-space: nowrap; height: 40px;">
-      <template v-for="index in 20">
-      <el-tag
-          v-for="item in visitedViews"
-          :key="item.path"
-          :class="_isActive(item)?'active':''"
-          :effect="_isActive(item)?'dark':'plain'"
-          @close="_delTags(item)"
-          type="success"
-          size="medium"
-          closable
-          class="tag"
-      >
-        <router-link :to="item.path">
-          <span>{{item.title}}</span>
-        </router-link>
-      </el-tag>
-      </template>
+    <div v-if="visitedViews.length > 0" class="tag-area">
+      <el-scrollbar style="white-space: nowrap; height: 40px; line-height: 40px;">
+        <el-tag
+            v-for="item in visitedViews"
+            :key="item.path"
+            :class="_isActive(item)?'active':''"
+            :effect="_isActive(item)?'dark':'plain'"
+            @close="_delTags(item)"
+            type="success"
+            size="medium"
+            closable
+            class="tag"
+        >
+          <router-link :to="item.path">
+            <span>{{item.title}}</span>
+          </router-link>
+        </el-tag>
       </el-scrollbar>
     </div>
   </div>

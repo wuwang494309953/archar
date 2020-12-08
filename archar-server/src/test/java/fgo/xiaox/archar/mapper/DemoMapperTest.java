@@ -9,11 +9,15 @@ import fgo.xiaox.archar.common.util.JSON;
 import fgo.xiaox.archar.entity.Demo;
 import fgo.xiaox.archar.service.IDemoService;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +33,9 @@ public class DemoMapperTest extends ArcharApplicationTests {
 
     @Autowired
     private IDemoService demoService;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     public void list() {
@@ -61,5 +68,19 @@ public class DemoMapperTest extends ArcharApplicationTests {
         Page<Demo> page = new Page<>();
         Page<Demo> demoPage = demoService.page(page);
         log.info("分页查询: {}", demoPage);
+    }
+
+    @Test
+    public void test1() {
+        String sql = "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_COMMENT, COLUMN_DEFAULT " +
+                "FROM INFORMATION_SCHEMA.COLUMNS " +
+                "WHERE " +
+                "table_name = 'demo'";
+        List<Integer> result = jdbcTemplate.query(sql, (ResultSet resultSet) -> {
+            ArrayList<Integer> integers = Lists.newArrayList();
+            System.out.println(resultSet);
+            return integers;
+        });
+        log.info("结果是: {}", result);
     }
 }

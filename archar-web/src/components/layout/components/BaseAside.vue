@@ -59,7 +59,7 @@ export default {
             {
               menuName: '菜单管理',
               menuIcon: '',
-              menuUrl: '/menus',
+              menuUrl: '/sys/menus',
               child: []
             },
             {
