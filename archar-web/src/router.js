@@ -38,8 +38,14 @@ export default new Router({
                 {
                     path: 'menus',
                     name: 'menus',
-                    component: () => import('@/pages/sys/MenuList'),
+                    component: () => import('@/pages/sys/menu/index'),
                     meta: { title: '系统菜单' }
+                },
+                {
+                    path: 'tableInfo',
+                    name: 'tableInfo',
+                    component: () => import('@/pages/sys/query-info/index'),
+                    meta: { title: '列表数据' }
                 },
                 {
                     path: 'demo1',

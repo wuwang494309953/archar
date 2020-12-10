@@ -63,6 +63,12 @@ export default {
               child: []
             },
             {
+              menuName: '列表数据',
+              menuIcon: '',
+              menuUrl: '/sys/tableInfo',
+              child: []
+            },
+            {
               menuName: 'demo1',
               menuIcon: '',
               menuUrl: '/sys/demo1',
