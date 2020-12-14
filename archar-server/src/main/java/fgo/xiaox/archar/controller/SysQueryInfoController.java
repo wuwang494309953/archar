@@ -5,64 +5,60 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import fgo.xiaox.archar.common.base.db.BaseController;
 import fgo.xiaox.archar.common.base.db.PageParam;
 import fgo.xiaox.archar.common.base.web.JsonResult;
-import fgo.xiaox.archar.entity.Demo;
-import fgo.xiaox.archar.service.DemoService;
+import fgo.xiaox.archar.entity.SysQueryInfo;
+import fgo.xiaox.archar.service.SysQueryInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
-* <p>
-*  前端控制器123
-* </p>
+    *    <p>
+    *   查询数据 前端控制器
+    *   SysQueryInfo
+    *   ServiceImpl
+    *   </p>
 *
 * @author archar
-* @since 2020-11-06
+* @since 2020-12-10
 */
 @RestController
-@RequestMapping("/demo")
-public class DemoController extends BaseController<DemoService, Demo> {
+@RequestMapping("/sysQueryInfo")
+public class SysQueryInfoController extends BaseController<SysQueryInfoService, SysQueryInfo> {
 
     @Autowired
-    private DemoService demoService;
+    private SysQueryInfoService sysQueryInfoService;
 
     @Override
-    public DemoService getService() {
-        return demoService;
+    public SysQueryInfoService getService() {
+        return sysQueryInfoService;
     }
 
     @GetMapping("/list")
-    public JsonResult<List<Demo>> demoList() {
+    public JsonResult<List<SysQueryInfo>> sysQueryInfoList() {
         return JsonResult.success(super.list());
     }
 
     @PostMapping("/page")
-    public JsonResult<Page<Demo>> demoPage(@RequestBody PageParam pageParam) {
+    public JsonResult<Page<SysQueryInfo>> sysQueryInfoPage(@RequestBody PageParam pageParam) {
         return JsonResult.success(super.pageCondition(pageParam));
     }
 
     @GetMapping("/{id}")
-    public JsonResult<Demo> demoGetById(@PathVariable Long id) {
+    public JsonResult<SysQueryInfo> sysQueryInfoGetById(@PathVariable Long id) {
         return JsonResult.success(super.getById(id));
     }
 
-
     @PutMapping
-    public JsonResult<Object> demoSaveOrUpdate(@RequestBody Demo demo) {
-        super.saveOrUpdate(demo);
+    public JsonResult<Object> sysQueryInfoSaveOrUpdate(@RequestBody SysQueryInfo sysQueryInfo) {
+        super.saveOrUpdate(sysQueryInfo);
         return JsonResult.success("保存或更新数据成功");
     }
 
     @DeleteMapping("{id}")
-    public JsonResult<Demo> demoRemoveById(@PathVariable Long id) {
+    public JsonResult<SysQueryInfo> sysQueryInfoRemoveById(@PathVariable Long id) {
         super.removeById(id);
         return JsonResult.success("删除数据成功");
-    }
-
-    @PostMapping("/tt")
-    public JsonResult<Demo> tt(String name) {
-        return JsonResult.success(name);
     }
 
 }

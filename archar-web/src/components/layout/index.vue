@@ -6,13 +6,16 @@
     </div>
     <!--  右边  -->
     <div class="body-contain">
-      <el-container>
+      <el-container style="height: 100%;">
         <el-header class="navbar">
           <BaseHead></BaseHead>
         </el-header>
         <el-main class="a-custom-main">
-          <BaseMenuBar></BaseMenuBar>
-          <BaseMain></BaseMain>
+          <el-scrollbar style="height: 100%">
+            <BaseMenuBar></BaseMenuBar>
+            <BaseMain></BaseMain>
+          </el-scrollbar>
+
         </el-main>
       </el-container>
     </div>

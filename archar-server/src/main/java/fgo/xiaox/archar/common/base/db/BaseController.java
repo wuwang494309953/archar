@@ -1,8 +1,10 @@
 package fgo.xiaox.archar.common.base.db;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.google.common.collect.Lists;
 
 import java.io.Serializable;
 import java.util.List;
@@ -34,7 +36,7 @@ public abstract class BaseController <T extends IService<M>, M> {
     public M getById(Serializable id) { return  getService().getById(id); }
 
     public boolean saveOrUpdate(M m) {
-        return getService().save(m);
+        return getService().saveOrUpdate(m);
     };
 
     public boolean removeById(Serializable id) {
@@ -43,6 +45,7 @@ public abstract class BaseController <T extends IService<M>, M> {
 
     public Page<M> pageCondition(PageParam pageParam) {
         Page<M> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
+        page.setOrders(Lists.newArrayList(OrderItem.descs("create_time")));
         QueryWrapper<M> wrapper = AWrappers.parseWhereSql(pageParam.getConditionList());
         return getService().page(page, wrapper);
     }

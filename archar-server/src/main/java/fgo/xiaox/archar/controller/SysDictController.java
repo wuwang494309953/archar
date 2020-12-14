@@ -2,67 +2,65 @@ package fgo.xiaox.archar.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import fgo.xiaox.archar.common.base.db.BaseController;
 import fgo.xiaox.archar.common.base.db.PageParam;
 import fgo.xiaox.archar.common.base.web.JsonResult;
-import fgo.xiaox.archar.entity.Demo;
-import fgo.xiaox.archar.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import fgo.xiaox.archar.service.SysDictService;
+import fgo.xiaox.archar.entity.SysDict;
+
+import fgo.xiaox.archar.common.base.db.BaseController;
+
 /**
-* <p>
-*  前端控制器123
-* </p>
+    *    <p>
+    *   数据字典表 前端控制器
+    *   SysDict
+    *   ServiceImpl
+    *   </p>
 *
 * @author archar
-* @since 2020-11-06
+* @since 2020-12-10
 */
 @RestController
-@RequestMapping("/demo")
-public class DemoController extends BaseController<DemoService, Demo> {
+@RequestMapping("/sysDict")
+public class SysDictController extends BaseController<SysDictService, SysDict> {
 
     @Autowired
-    private DemoService demoService;
+    private SysDictService sysDictService;
 
     @Override
-    public DemoService getService() {
-        return demoService;
+    public SysDictService getService() {
+        return sysDictService;
     }
 
     @GetMapping("/list")
-    public JsonResult<List<Demo>> demoList() {
+    public JsonResult<List<SysDict>> sysDictList() {
         return JsonResult.success(super.list());
     }
 
     @PostMapping("/page")
-    public JsonResult<Page<Demo>> demoPage(@RequestBody PageParam pageParam) {
+    public JsonResult<Page<SysDict>> sysDictPage(@RequestBody PageParam pageParam) {
         return JsonResult.success(super.pageCondition(pageParam));
     }
 
     @GetMapping("/{id}")
-    public JsonResult<Demo> demoGetById(@PathVariable Long id) {
+    public JsonResult<SysDict> sysDictGetById(@PathVariable Long id) {
         return JsonResult.success(super.getById(id));
     }
 
-
     @PutMapping
-    public JsonResult<Object> demoSaveOrUpdate(@RequestBody Demo demo) {
-        super.saveOrUpdate(demo);
+    public JsonResult<Object> sysDictSaveOrUpdate(@RequestBody SysDict sysDict) {
+        super.saveOrUpdate(sysDict);
         return JsonResult.success("保存或更新数据成功");
     }
 
     @DeleteMapping("{id}")
-    public JsonResult<Demo> demoRemoveById(@PathVariable Long id) {
+    public JsonResult<SysDict> sysDictRemoveById(@PathVariable Long id) {
         super.removeById(id);
         return JsonResult.success("删除数据成功");
-    }
-
-    @PostMapping("/tt")
-    public JsonResult<Demo> tt(String name) {
-        return JsonResult.success(name);
     }
 
 }
