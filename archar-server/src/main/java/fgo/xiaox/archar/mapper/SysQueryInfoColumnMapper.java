@@ -1,6 +1,6 @@
 package fgo.xiaox.archar.mapper;
 
-import fgo.xiaox.archar.entity.SysQueryInfoColum;
+import fgo.xiaox.archar.entity.SysQueryInfoColumn;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author archar
  * @since 2020-12-10
  */
-public interface SysQueryInfoColumMapper extends BaseMapper<SysQueryInfoColum> {
+public interface SysQueryInfoColumnMapper extends BaseMapper<SysQueryInfoColumn> {
 
 }

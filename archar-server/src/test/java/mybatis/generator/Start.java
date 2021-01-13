@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +18,17 @@ public class Start {
      * 文件生成会在 {USER_DIR/src/main/java/{MODULE_NAME}}下生成controller，service，dao
      * 文件生成会在 {USER_DIR/src/main/resources/mapper/{MODULE_NAME}}下生成*Mapper.xml
      */
-    public static final String USER_DIR = "D:\\workspces\\javaSaber\\archar-server";
+//    public static final String USER_DIR = "D:\\workspces\\javaSaber\\archar-server";
     public static final String MODULE_NAME = "";
     public static final String PACKAGE_NAME = "fgo.xiaox.archar";
 
 
-//    public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String USER_DIR = System.getProperty("user.dir");
 
 
     public static void main(String[] args) {
+        List<String> name = Lists.asList("name", new String[]{"archar", "saber"});
+        System.out.println(name);
         AutoGenerator generator = new AutoGenerator();
 
         GlobalConfig globalConfig = new GlobalConfig();

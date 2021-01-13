@@ -24,8 +24,8 @@
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="_handleSubmit('form')">确定</el-button>
           <el-button @click="_handleClose">取消</el-button>
+          <el-button type="primary" @click="_handleSubmit('form')">确定</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>

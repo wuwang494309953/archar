@@ -1,7 +1,10 @@
 package fgo.xiaox.archar.service;
 
-import fgo.xiaox.archar.entity.SysQueryInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import fgo.xiaox.archar.entity.SysQueryInfo;
+import fgo.xiaox.archar.pojo.table.TableInfo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SysQueryInfoService extends IService<SysQueryInfo> {
 
+    List<TableInfo> getAllTableAndColumns();
 }

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class JsonResult <T> {
+public class JsonResult<T> {
 
     private int code;
 

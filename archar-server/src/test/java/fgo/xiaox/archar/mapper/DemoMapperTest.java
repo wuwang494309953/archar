@@ -1,13 +1,14 @@
 package fgo.xiaox.archar.mapper;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import fgo.xiaox.archar.ArcharApplicationTests;
 import fgo.xiaox.archar.common.util.JSON;
 import fgo.xiaox.archar.entity.Demo;
-import fgo.xiaox.archar.service.IDemoService;
+import fgo.xiaox.archar.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ import java.util.List;
 public class DemoMapperTest extends ArcharApplicationTests {
 
     @Autowired
-    private IDemoService demoService;
+    private DemoService demoService;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -48,6 +49,15 @@ public class DemoMapperTest extends ArcharApplicationTests {
         LocalDateTime parse = LocalDateTime.parse("2020-11-05T02:21:49", DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         QueryWrapper<Demo> queryWrapper = Wrappers.query();
         queryWrapper.eq("birthday_time", parse);
+        List<Demo> list = demoService.list(queryWrapper);
+        log.info("查询结果: {}", JSON.obj2String(list));
+    }
+
+    @Test
+    public void t2() {
+        LocalDateTime parse = LocalDateTime.parse("2020-11-05T02:21:49", DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LambdaQueryWrapper<Demo> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(Demo::getBirthdayTime, parse);
         List<Demo> list = demoService.list(queryWrapper);
         log.info("查询结果: {}", JSON.obj2String(list));
     }

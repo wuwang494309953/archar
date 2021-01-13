@@ -2,10 +2,16 @@
   <el-card>
     <el-row>
       <el-col :span="12">
-        <el-button type="primary" size="small" round @click="_handleAdd">新增</el-button>
+        <div class="query-area">
+          <el-input size="small" v-model="queryKeyword" placeholder="请输入查询值"></el-input>
+          <el-button type="primary" size="small" round @click="_getTableData">查询</el-button>
+          <el-button type="primary" size="small" round @click="_handleAdd">新增</el-button>
+        </div>
         <el-table
           v-loading="loading"
-          :data="tableData">
+          :data="tableData"
+          highlight-current-row
+          @row-click="_handleRow">
           <el-table-column
               type="index"
               width="50">
@@ -35,7 +41,9 @@
             layout="total, prev, pager, next"
         />
       </el-col>
-      <el-col :span="12">456</el-col>
+      <el-col :span="12">
+        <QueryColum />
+      </el-col>
     </el-row>
 
     <QueryAddForm :visible.sync="visible" :editItem="editItem" @refreshTable="_getTableData"></QueryAddForm>
@@ -45,11 +53,13 @@
 <script>
 import { getQueryInfoPage, delQueryInfo } from '@/api/queryInfo'
 import QueryAddForm from "@/pages/sys/query-info/components/QueryAddForm";
+import QueryColum from "@/pages/sys/query-info/components/QueryColum";
 
 export default {
   name: "TableInfoList",
   data () {
     return {
+      queryKeyword: '',
       total: 0,
       loading: false,
       tableData: [],
@@ -88,26 +98,57 @@ export default {
     },
     _getTableData() {
       this.loading = true
-      getQueryInfoPage(this.page).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
-      }).finally(() => {
-        this.loading = false
-      })
+      getQueryInfoPage(this._buildQueryCondition(this.page))
+          .then(res => {
+            this.tableData = res.data.records
+            this.total = res.data.total
+          })
+          .finally(() => {
+            this.loading = false
+          })
+    },
+    _buildQueryCondition(params) {
+      if (this.queryKeyword == null || this.queryKeyword === '') {
+        params.conditionList = null
+        return params
+      }
+      params.conditionList = [
+        {
+          "type": "like",
+          "column": "query_code",
+          "value": this.queryKeyword
+        },
+        {
+          "type": "or"
+        },
+        {
+          "type": "like",
+          "column": "query_name",
+          "value": this.queryKeyword
+        }
+      ]
+      return params
     },
     _handleCurrentChange() {
       this._getTableData()
+    },
+    _handleRow(row, column, event) {
+      console.log(row, column, event)
     }
   },
   created() {
     this._getTableData()
   },
   components: {
-    QueryAddForm
+    QueryAddForm,
+    QueryColum
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+.query-area
+  .el-input
+    width 180px
+    margin-right 20px
 </style>

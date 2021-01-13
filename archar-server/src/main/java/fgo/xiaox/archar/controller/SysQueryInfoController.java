@@ -6,6 +6,7 @@ import fgo.xiaox.archar.common.base.db.BaseController;
 import fgo.xiaox.archar.common.base.db.PageParam;
 import fgo.xiaox.archar.common.base.web.JsonResult;
 import fgo.xiaox.archar.entity.SysQueryInfo;
+import fgo.xiaox.archar.pojo.table.TableInfo;
 import fgo.xiaox.archar.service.SysQueryInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,11 @@ public class SysQueryInfoController extends BaseController<SysQueryInfoService, 
     public JsonResult<SysQueryInfo> sysQueryInfoRemoveById(@PathVariable Long id) {
         super.removeById(id);
         return JsonResult.success("删除数据成功");
+    }
+
+    @GetMapping("/tables/info")
+    public JsonResult<List<TableInfo>> getAllTableAndColumns() {
+        return JsonResult.success(sysQueryInfoService.getAllTableAndColumns());
     }
 
 }

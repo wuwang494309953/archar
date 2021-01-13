@@ -1,9 +1,10 @@
 package fgo.xiaox.archar.entity;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -15,16 +16,16 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysQueryInfoColum implements Serializable {
+public class SysQueryInfoColumn implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
     /**
-     * sys_table_info表id
+     * sys_query_info表id
      */
-    private Long tableInfoId;
+    private Long queryInfoId;
 
     /**
      * 列名

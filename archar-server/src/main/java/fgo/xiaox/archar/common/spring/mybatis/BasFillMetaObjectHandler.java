@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/**
+ * 自动填充创建时间和更新时间
+ */
 @Component
 public class BasFillMetaObjectHandler implements MetaObjectHandler {
 
@@ -19,6 +22,5 @@ public class BasFillMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
-
     }
 }

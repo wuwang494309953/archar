@@ -6,6 +6,6 @@ public class JsonResultStatus {
 
     public static final JsonResult<Object> ERROR = JsonResult.fail(1000, "未知的错误");
 
-    public static final JsonResult<Object> NOT_FOUND_EXCEPTION = JsonResult.fail(1001, "地址未找到");
+    public static final JsonResult<Object> NOT_FOUND_EXCEPTION = JsonResult.fail(1001, "404");
 
 }

@@ -79,10 +79,10 @@ CREATE TABLE `sys_query_info` (
 -- ----------------------------
 -- Table structure for sys_query_info_colum
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_query_info_colum`;
-CREATE TABLE `sys_query_info_colum` (
+DROP TABLE IF EXISTS `sys_query_info_column`;
+CREATE TABLE `sys_query_info_column` (
                                         `id` bigint(20) NOT NULL,
-                                        `table_info_id` bigint(20) NOT NULL COMMENT 'sys_table_info表id',
+                                        `query_info_id` bigint(20) NOT NULL COMMENT 'sys_table_info表id',
                                         `colum` varchar(50) NOT NULL COMMENT '列名',
                                         `jdbc_type` varchar(100) NOT NULL COMMENT '数据库类型',
                                         `description` varchar(255) DEFAULT NULL COMMENT '字段描述',
